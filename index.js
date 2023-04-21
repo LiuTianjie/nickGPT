@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NickGPT
 // @namespace    https://ugpt.nickname4th.vip/
-// @version      0.5
+// @version      0.6
 // @description  Use NickGPT on Google Search page!
 // @author       InJeCTrL
 // @match        *://www.google.com/search*
@@ -15,6 +15,7 @@
 // @match        *://duckduckgo.com/?*
 // @match        *://www.so.com/s?*
 // @grant        window.onurlchange
+// @grant        GM_addElement
 // @icon         https://s1.ax1x.com/2023/04/21/p9E40Ve.png
 // @require      https://code.jquery.com/jquery-3.6.0.js
 // @require      https://cdn.bootcdn.net/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js
@@ -45,9 +46,9 @@
 
     function searchKeyword() {
         document.getElementById('nickgpt-wnd')
-                .contentWindow.postMessage({
-                "nickGPT": getSearchContent()
-            }, '*');
+            .contentWindow.postMessage({
+            "nickGPT": getSearchContent()
+        }, '*');
     }
 
     function nickgptHandler(message) {
@@ -62,8 +63,11 @@
         ifr.id = "nickgpt-wnd";
         ifr.src = "https://ugpt.nickname4th.vip";
         box.id = "nickgpt-box";
-        box.appendChild(ifr);
         document.body.insertBefore(box, document.body.firstChild);
+        GM_addElement(box, 'iframe', {
+            src: "https://ugpt.nickname4th.vip",
+            id: "nickgpt-wnd"
+        });
 
         $(function () {
             $("#nickgpt-box").draggable();
@@ -102,7 +106,8 @@ border-radius: 25px;\
         document.children[0].appendChild(style);
     }
 
-    if (window.onurlchange === null) {
+    if (window.onurlchange === null &&
+        (window.location.href.indexOf("www.so.com") != -1 || window.location.href.indexOf("www.baidu.com") != -1)) {
         window.addEventListener('urlchange', (info) => {
             searchKeyword();
         });
