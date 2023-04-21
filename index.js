@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         NickGPT
 // @namespace    https://ugpt.nickname4th.vip/
-// @version      0.4
+// @version      0.5
 // @description  Use NickGPT on Google Search page!
 // @author       InJeCTrL
 // @match        *://www.google.com/search*
 // @match        *://www.google.com.hk/search*
 // @match        *://www.google.co.uk/search*
 // @match        *://www.baidu.com*
+// @match        *://www.baidu.com/s*
 // @match        *://so.toutiao.com/search*
 // @match        *://cn.bing.com/search*
 // @match        *://www.bing.com/search*
@@ -62,7 +63,7 @@
         ifr.src = "https://ugpt.nickname4th.vip";
         box.id = "nickgpt-box";
         box.appendChild(ifr);
-        document.children[0].appendChild(box);
+        document.body.insertBefore(box, document.body.firstChild);
 
         $(function () {
             $("#nickgpt-box").draggable();
@@ -103,9 +104,6 @@ border-radius: 25px;\
 
     if (window.onurlchange === null) {
         window.addEventListener('urlchange', (info) => {
-            /*document.getElementById('nickgpt-wnd').remove();
-            document.getElementById('nickgpt-box').remove();
-            insertWnd();*/
             searchKeyword();
         });
     }
