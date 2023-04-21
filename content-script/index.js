@@ -1,11 +1,27 @@
-const nickGPT = $('<div id="drag" class="iframe-container"><iframe id="nickGPT" class="nickname-container" src="https://ugpt.nickname4th.vip">test</iframe></div>')[0]
-$('body').append(nickGPT)
+const nickGPT = $('<div id="drag" class="iframe-container"><iframe id="nickGPT" class="nickname-container" src="https://ugpt.nickname4th.vip"></iframe></div>')
+$('html').append(nickGPT)
 
 console.log("============NickGPT MOUNTED============")
 
+const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0] || $('input.search__input--adv')[0]
+
+// 适配baidu搜索
+if (window.location.href.includes("baidu")) {
+    $('input#kw').blur(function () {
+        postToNickGPT()
+    })
+}
+
+// 适配360搜索
+if (window.location.href.includes("www.so.com")) {
+    $('input#keyword').blur(function () {
+        postToNickGPT()
+    })
+}
+
 // Get search input from parent
 function getSearchInput() {
-    const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0] || $('input.search__input--adv')[0]
+    // google, bing, sougo, baidu, toutiao, duckduckgo
     if (searchInput) {
         return searchInput.innerHTML || searchInput.value
     } else {
@@ -28,9 +44,6 @@ window.addEventListener("message", e => {
         $(document).ready(function () {
             postToNickGPT()
         })
-    }
-    else {
-        return
     }
 })
 
