@@ -5,7 +5,7 @@ console.log("============NickGPT MOUNTED============")
 
 // Get search input from parent
 function getSearchInput() {
-    const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0]
+    const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0] || $('input.search__input--adv')[0]
     if (searchInput) {
         return searchInput.innerHTML || searchInput.value
     } else {

@@ -24,7 +24,8 @@
                 "https://*.baidu.com/*",
                 "https://*.bing.com/*",
                 "https://*.so.com/*",
-                "https://*.toutiao.com/*"
+                "https://*.toutiao.com/*",
+                "https://*.duckduckgo.com/*"
             ],
             "css": [
                 "content-script/index.css"
