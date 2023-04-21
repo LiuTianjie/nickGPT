@@ -11,8 +11,8 @@
 
 ### 当前使用方法 2
 
-使用油猴脚本，本插件支持chromium内核的浏览器，插件地址为：[https://www.tampermonkey.net/index.php]()
-![](https://adream-cos-bucket-1254116918.cos.ap-beijing.myqcloud.com/app/img/202304212315198.png)
+使用油猴脚本，本插件支持chromium内核的浏览器，插件地址为：[https://greasyfork.org/zh-CN/scripts/464557-nickgpt]()
+![](https://adream-cos-bucket-1254116918.cos.ap-beijing.myqcloud.com/app/img/202304212352068.png)
 
 # 后期规划
 -[ ] 支持填入自定义apikey
