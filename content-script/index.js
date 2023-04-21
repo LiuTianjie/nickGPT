@@ -1,14 +1,13 @@
 const nickGPT = $('<div id="drag" class="iframe-container"><iframe id="nickGPT" class="nickname-container" src="https://ugpt.nickname4th.vip">test</iframe></div>')[0]
-$('.main').append(nickGPT)
+$('body').append(nickGPT)
 
 console.log("============NickGPT MOUNTED============")
 
 // Get search input from parent
 function getSearchInput() {
-    const searchInput = $('textarea.gLFyf')[0]
+    const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0]
     if (searchInput) {
-        console.log(searchInput.innerHTML);
-        return searchInput.innerHTML
+        return searchInput.innerHTML || searchInput.value
     } else {
         console.log("no search input")
     }

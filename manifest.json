@@ -20,7 +20,11 @@
         {
             "matches": [
                 "https://*.google.com/*",
-                "https://*.google.com.hk/*"
+                "https://*.google.com.hk/*",
+                "https://*.baidu.com/*",
+                "https://*.bing.com/*",
+                "https://*.so.com/*",
+                "https://*.toutiao.com/*"
             ],
             "css": [
                 "content-script/index.css"
