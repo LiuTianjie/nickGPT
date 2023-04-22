@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NickGPT
 // @namespace    https://ugpt.nickname4th.vip/
-// @version      0.6
+// @version      0.7
 // @description  Use NickGPT on Google Search page!
 // @author       InJeCTrL
 // @match        *://www.google.com/search*
@@ -14,6 +14,7 @@
 // @match        *://www.bing.com/search*
 // @match        *://duckduckgo.com/?*
 // @match        *://www.so.com/s?*
+// @match        *://www.sogou.com/*
 // @grant        window.onurlchange
 // @grant        GM_addElement
 // @icon         https://s1.ax1x.com/2023/04/21/p9E40Ve.png
@@ -41,6 +42,8 @@
             return document.getElementById('search_form_input').value;
         } else if (url.indexOf("www.so.com") != -1) {
             return document.getElementById('keyword').value;
+        } else if (url.indexOf("www.sogou.com") != -1) {
+            return document.getElementById('upquery').value;
         }
     }
 
