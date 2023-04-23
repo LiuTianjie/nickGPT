@@ -1,5 +1,5 @@
 const nickGPT = $('<div id="drag" class="iframe-container"><iframe id="nickGPT" class="nickname-container" src="https://ugpt.nickname4th.vip"></iframe></div>')
-$('html').append(nickGPT)
+
 
 console.log("============NickGPT MOUNTED============")
 
@@ -50,4 +50,27 @@ window.addEventListener("message", e => {
 $(function () {
     console.log($('#drag'))
     $("#drag").draggable();
+});
+
+
+function mountOrUnmountGPT(msg) {
+    if (msg.switch_status) {
+        $('html').append(nickGPT)
+    } else {
+        $('#drag').remove()
+    }
+}
+
+chrome.storage.sync.get({
+    isOn: true
+}, items => {
+    console.log('items form contnet', items)
+    const isOn = items.isOn
+    mountOrUnmountGPT({ switch_status: isOn })
+})
+
+chrome.runtime.onMessage.addListener(function (msg, sender, response) {
+    console.log('msg', msg);
+    mountOrUnmountGPT(msg)
+    response({ status: true });
 });

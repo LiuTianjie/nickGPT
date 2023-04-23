@@ -6,6 +6,10 @@
         "https://*.nickname4th.vip/*",
         "http://localhost:3000/*"
     ],
+    "permissions": [
+        "nativeMessaging",
+        "storage"
+    ],
     "description": "在浏览器中方便的使用chatgpt",
     "icons": {
         "16": "icons/nickgpt16.png",
@@ -13,9 +17,9 @@
         "48": "icons/nickgpt48.png",
         "128": "icons/nickgpt128.png"
     },
-    // "action": {
-    //     "default_popup": "popup/popup.html"
-    // },
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -37,5 +41,16 @@
             ],
             "run_at": "document_idle"
         }
-    ]
+    ],
+    "externally_connectable": {
+        "matches": [
+            "https://*.google.com/*",
+            "https://*.google.com.hk/*",
+            "https://*.baidu.com/*",
+            "https://*.bing.com/*",
+            "https://*.so.com/*",
+            "https://*.toutiao.com/*",
+            "https://*.duckduckgo.com/*"
+        ]
+    }
 }

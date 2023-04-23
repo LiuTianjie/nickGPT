@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="flex w-50 switch-out">
+            <div class="label">插件开关:</div>
+            <input id="switch" type="checkbox" class="switch" checked />
+        </div>
+    </div>
+</body>
+<script src="popup.js"></script>
+<style>
+    .container {
+        width: 150px;
+        height: fit-content;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .label {
+        margin-right: 4px;
+    }
+
+    .switch-out {
+        padding: 2;
+        width: 100%;
+        align-items: center;
+    }
+</style>
+<style type="text/css">
+    .switch {
+        width: 35px;
+        height: 18px;
+        position: relative;
+        background-color: #DCDFE6;
+        box-shadow: #dfdfdf 0 0 0 0 inset;
+        border-radius: 20px;
+        background-clip: content-box;
+        display: inline-block;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        user-select: none;
+        outline: none;
+    }
+
+    .switch::before {
+        content: '';
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+        left: 2px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        transition: .3s;
+    }
+
+    .switch:checked {
+        background-color: #409EFF;
+        transition: .6s;
+    }
+
+    .switch:checked::before {
+        left: 20px;
+        transition: .3s;
+    }
+</style>
+
+</html>
