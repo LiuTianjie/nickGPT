@@ -15,14 +15,14 @@
 ![](https://adream-cos-bucket-1254116918.cos.ap-beijing.myqcloud.com/app/img/202304212352068.png)
 
 # 后期规划
--[ ] 支持填入自定义apikey
+- [ ] 支持填入自定义apikey
 
--[ ] 切换Authing认证方式
+- [ ] 切换Authing认证方式
 
--[ ] 支持bing搜索
+- [x] 支持bing搜索
 
--[ ] 支持百度搜索
+- [x] 支持百度搜索
 
--[ ] 支持360搜索
+- [x] 支持360搜索
 
--[ ] 支持头条搜索
+- [x] 支持头条搜索

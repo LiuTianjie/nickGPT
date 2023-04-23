@@ -29,7 +29,8 @@
                 "https://*.bing.com/*",
                 "https://*.so.com/*",
                 "https://*.toutiao.com/*",
-                "https://*.duckduckgo.com/*"
+                "https://*.duckduckgo.com/*",
+                "https://*.sogou.com/*"
             ],
             "css": [
                 "content-script/index.css"
@@ -50,7 +51,8 @@
             "https://*.bing.com/*",
             "https://*.so.com/*",
             "https://*.toutiao.com/*",
-            "https://*.duckduckgo.com/*"
+            "https://*.duckduckgo.com/*",
+            "https://*.sogou.com/*"
         ]
     }
 }

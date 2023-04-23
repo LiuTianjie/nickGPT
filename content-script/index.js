@@ -3,7 +3,7 @@ const nickGPT = $('<div id="drag" class="iframe-container"><iframe id="nickGPT" 
 
 console.log("============NickGPT MOUNTED============")
 
-const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0] || $('input.search__input--adv')[0]
+const searchInput = $('textarea.gLFyf')[0] || $('textarea.b_searchbox')[0] || $('input.s_ipt')[0] || $('input.input_key')[0] || $('input.input_eZQfPE')[0] || $('input.search__input--adv')[0] || $('input.query')[0]
 
 // 适配baidu搜索
 if (window.location.href.includes("baidu")) {
