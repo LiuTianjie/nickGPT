@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NickGPT
 // @namespace    https://ugpt.nickname4th.vip/
-// @version      0.8
+// @version      0.9
 // @description  Use NickGPT on Google Search page!
 // @author       InJeCTrL
 // @match        *://www.google.com/search*
@@ -65,7 +65,12 @@
     function insertWnd() {
         var box = document.createElement("div");
         box.id = "nickgpt-box";
-        document.body.insertBefore(box, document.body.firstChild);
+        if (window.location.href.indexOf("www.so.com") != -1) {
+            document.body.firstElementChild.appendChild(box);
+        } else {
+            document.body.insertBefore(box, document.body.firstChild);
+        }
+
         var funcBtn = document.createElement("div");
         funcBtn.innerText = "停用NickGPT";
         funcBtn.id = "funcBtn";
