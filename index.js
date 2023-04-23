@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NickGPT
 // @namespace    https://ugpt.nickname4th.vip/
-// @version      0.7
+// @version      0.8
 // @description  Use NickGPT on Google Search page!
 // @author       InJeCTrL
 // @match        *://www.google.com/search*
@@ -17,6 +17,8 @@
 // @match        *://www.sogou.com/*
 // @grant        window.onurlchange
 // @grant        GM_addElement
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @icon         https://s1.ax1x.com/2023/04/21/p9E40Ve.png
 // @require      https://code.jquery.com/jquery-3.6.0.js
 // @require      https://cdn.bootcdn.net/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js
@@ -62,25 +64,51 @@
 
     function insertWnd() {
         var box = document.createElement("div");
-        var ifr = document.createElement("iframe");
-        ifr.id = "nickgpt-wnd";
-        ifr.src = "https://ugpt.nickname4th.vip";
         box.id = "nickgpt-box";
         document.body.insertBefore(box, document.body.firstChild);
-        GM_addElement(box, 'iframe', {
-            src: "https://ugpt.nickname4th.vip",
-            id: "nickgpt-wnd"
-        });
+        var funcBtn = document.createElement("div");
+        funcBtn.innerText = "停用NickGPT";
+        funcBtn.id = "funcBtn";
+        box.appendChild(funcBtn);
+
+        var enabled = GM_getValue("enabled_nickgpt");
+        insertStyle(enabled);
+        if (enabled === true) {
+            var ifr = document.createElement("iframe");
+            ifr.id = "nickgpt-wnd";
+            ifr.src = "https://ugpt.nickname4th.vip";
+            GM_addElement(box, 'iframe', {
+                src: "https://ugpt.nickname4th.vip",
+                id: "nickgpt-wnd"
+            });
+            window.addEventListener("message", nickgptHandler);
+            funcBtn.onclick = function(){
+                GM_setValue("enabled_nickgpt", false);
+                window.location.reload();
+            }
+
+            if (window.onurlchange === null &&
+                (window.location.href.indexOf("www.so.com") != -1 || window.location.href.indexOf("www.baidu.com") != -1)) {
+                window.addEventListener('urlchange', (info) => {
+                    searchKeyword();
+                });
+            }
+        } else {
+            funcBtn.innerText = "启用NickGPT";
+            funcBtn.onclick = function(){
+                GM_setValue("enabled_nickgpt", true);
+                window.location.reload();
+            }
+        }
 
         $(function () {
             $("#nickgpt-box").draggable();
         });
-
-        window.addEventListener("message", nickgptHandler);
     }
 
-    function insertStyle() {
-        var css = "\
+    function insertStyle(enabled) {
+        if (enabled === true) {
+            var css = "\
 #nickgpt-box {\
 border: 1px solid #cceff5;\
 position: fixed;\
@@ -89,7 +117,6 @@ top: 8%;\
 width: 30%;\
 height: 80%;\
 z-index: 998;\
-padding-top:25px;\
 background: #1E90FF;\
 cursor: grab;\
 border-radius: 25px;\
@@ -98,24 +125,59 @@ box-shadow: 1px 1px 1px 1px grey;\
 #nickgpt-wnd {\
 border: none;\
 width: 100%;\
-height: 100%;\
+height: calc(100% - 40px);\
 z-index: 999;\
 background: white;\
-border-radius: 25px;\
+border-radius: 0px 0px 25px 25px;\
+}\
+#funcBtn {\
+float: right;\
+color: black;\
+height: 40px;\
+width: 110px;\
+font-size: 16px;\
+display: flex;\
+justify-content: center;\
+align-items:center;\
+background: #7FFFD4;\
+border-radius: 0px 25px 0px 0px;\
+cursor: pointer;\
 }";
+        } else {
+            var css = "\
+#nickgpt-box {\
+border: 1px solid #cceff5;\
+position: fixed;\
+right: 10%;\
+top: 8%;\
+width: 30%;\
+height: 40px;\
+z-index: 998;\
+background: #1E90FF;\
+cursor: grab;\
+border-radius: 25px;\
+box-shadow: 1px 1px 1px 1px grey;\
+}\
+#funcBtn {\
+float: right;\
+color: black;\
+height: 40px;\
+width: 110px;\
+font-size: 16px;\
+display: flex;\
+justify-content: center;\
+align-items:center;\
+background: #7FFFD4;\
+border-radius: 0px 25px 25px 0px;\
+cursor: pointer;\
+}";
+        }
+
         const style = document.createElement('style');
         style.type = 'text/css';
         style.appendChild(document.createTextNode(css));
         document.children[0].appendChild(style);
     }
 
-    if (window.onurlchange === null &&
-        (window.location.href.indexOf("www.so.com") != -1 || window.location.href.indexOf("www.baidu.com") != -1)) {
-        window.addEventListener('urlchange', (info) => {
-            searchKeyword();
-        });
-    }
-
-    insertStyle();
     insertWnd();
 })();
