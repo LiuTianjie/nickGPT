@@ -47,15 +47,16 @@ window.addEventListener("message", e => {
     }
 })
 
-$(function () {
-    console.log($('#drag'))
-    $("#drag").draggable();
-});
 
 
 function mountOrUnmountGPT(msg) {
     if (msg.switch_status) {
         $('html').append(nickGPT)
+        $(function () {
+            console.log($('#drag'))
+            $("#drag").draggable();
+        });
+
     } else {
         $('#drag').remove()
     }
